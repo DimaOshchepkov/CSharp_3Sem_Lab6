@@ -87,6 +87,31 @@ namespace Lab6
             return indMax;
         }
 
+        public static void Insert(ref int[] arr, int ind, int elem)
+        {
+            int[] newArr = new int[arr.Length + 1];
+            Array.Copy(arr, newArr, ind);
+            Array.Copy(arr, ind, newArr, ind+1, arr.Length - ind);
+            newArr[ind] = elem;
+
+            arr = newArr;
+        }
+
+        public static void Strange1(ref int[] arr)
+        {
+            int min = arr.Min();
+            int max = arr.Max();
+
+            for (int i = 0; i < arr.Length; i++)
+            {
+                if (arr[i] == max)
+                {
+                    Insert(ref arr, i, min);
+                    i++;
+                }
+            }
+        }
+
         public static void Swap<T>(ref T x, ref T y)
         {
             T sup = x;
@@ -104,14 +129,18 @@ namespace Lab6
         public static void PrintMenu()
         {
             Console.WriteLine("1) Поменять местами\n" +
-                                "2) Пересечение\n");
+                                "2) Пересечение\n" +
+                                "3) Странный действия\n");
         }
+
+
     }
 
     enum task
     {
         swap = 1,
         intersection,
+        strenge,
     }
 }
 

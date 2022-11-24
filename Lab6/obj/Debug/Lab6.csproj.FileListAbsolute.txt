@@ -6,3 +6,10 @@ D:\Лабораторки\C#\Lab6\Lab6\obj\Debug\Lab6.csproj.SuggestedBindingRed
 D:\Лабораторки\C#\Lab6\Lab6\obj\Debug\Lab6.csproj.CoreCompileInputs.cache
 D:\Лабораторки\C#\Lab6\Lab6\obj\Debug\Lab6.exe
 D:\Лабораторки\C#\Lab6\Lab6\obj\Debug\Lab6.pdb
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\bin\Debug\Lab6.exe.config
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\bin\Debug\Lab6.exe
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\bin\Debug\Lab6.pdb
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\obj\Debug\Lab6.csproj.AssemblyReference.cache
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\obj\Debug\Lab6.csproj.CoreCompileInputs.cache
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\obj\Debug\Lab6.exe
+\\lib16\Students\ФИб-2\Программирование на C#\Ощепкеов Дмитрий\CSharp_3Sem_Lab6\Lab6\obj\Debug\Lab6.pdb

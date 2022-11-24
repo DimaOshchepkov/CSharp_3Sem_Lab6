@@ -33,7 +33,7 @@ namespace Lab6
                 case (int)task.intersection:
                     {
                         int[] arr1 = { 1, 2, 3, 4, 5, 6 };
-                        int[] arr2 = { 2, 4, 5, 6 };
+                        int[] arr2 = { 2, 4, 5, 6, 8 };
                         int ind1 = 0;
                         int ind2 = 0;
 
@@ -53,10 +53,53 @@ namespace Lab6
                             else if (arr1[ind1] < arr2[ind2] && ind1 < arr1.Length)
                                 ind1++;
                         }
+
+                        while (ind1 != arr1.Length)
+                        {
+                            if (arr1[ind1] == arr2.Last())
+                            {
+                                result[sizeIntersection] = arr2.Last();
+                                sizeIntersection++;
+                            }
+                            ind1++;
+                        }
+
+                        while (ind2 != arr2.Length)
+                        {
+                            if (arr2[ind2] == arr1.Last())
+                            {
+                                result[sizeIntersection] = arr1.Last();
+                                sizeIntersection++;
+                            }
+                            ind2++;
+                        }
+
                         Array.Resize(ref result, sizeIntersection);
                         MyFunction.PrintArray(result);
                         break;
                     }
+                case (int)task.strenge:
+                    {
+                        Console.WriteLine("Введите размер массива");
+                        int size = MyFunction.ReadInt((int x) => x > 0, "Неверный ввод размера");
+
+                        Random r = new Random();
+                        int[] arr = new int[size];
+                        for (int i = 0; i < arr.Length; i++)
+                            arr[i] = r.Next(-15, 30 + 1);
+
+                        int max = arr.Max();
+                        int min = arr.Min();
+
+                        int[] test = { 1, 2, 3, 4, 4, 4, -1 };
+                        MyFunction.PrintArray(arr);
+
+                        MyFunction.Strange1(ref test);
+
+                        MyFunction.PrintArray(test);
+                        break;
+                    }
+                    
             }
 
             Console.ReadKey();
