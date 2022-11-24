@@ -144,6 +144,7 @@ namespace Lab6
             }
         }
 
+
         public static void Swap<T>(ref T x, ref T y)
         {
             T sup = x;
@@ -151,11 +152,20 @@ namespace Lab6
             y = sup;
         }
 
-        public static void PrintArray(int[] array)
+        public static void PrintArray(int[] array, int first= -1, int second = -1)
         {
-            foreach (int i in array)
-                Console.Write(i + " ");
-            Console.WriteLine();
+            if (first == second && second == -1)
+                foreach (int i in array)
+                    Console.Write(i + " ");
+            else if (first != -1 && second == -1)
+                for (int i = first; i < array.Length; i++)
+                    Console.Write(i + " ");
+            else if (first == -1 && second != -1)
+                for (int i = 0; i < second; i++)
+                    Console.Write(i + " ");
+            else if (first != -1 && second != -1)
+                for (int i = first; i < second; i++)
+                    Console.Write(i + " ");
         }
 
         public static void PrintMenu()
