@@ -17,13 +17,14 @@ namespace Lab6
             {
                 case (int)task.swap:
                     {
+                        Console.WriteLine("Введите массив");
                         int[] array = MyFunction.ReadIntInLine();
                         int indMin = MyFunction.IndexMin(array);
                         int indMax = MyFunction.IndexMax(array);
 
                         int middle = (int)Math.Ceiling((indMax + indMin) / 2.0);
-                        for (int i = indMin; i < middle; i++)
-                            MyFunction.Swap(ref array[i], ref array[indMax - i + indMin]);
+                        for (int i = Math.Min(indMin, indMax); i < middle; i++)
+                            MyFunction.Swap(ref array[i], ref array[Math.Max(indMax, indMin) - i + Math.Min(indMin, indMax)]);
 
 
                         MyFunction.PrintArray(array);
@@ -91,14 +92,18 @@ namespace Lab6
                         int max = arr.Max();
                         int min = arr.Min();
 
-                        int[] test = { 1, 2, 3, 4, 4, 4, -1 };
+                        Console.WriteLine("Максимальный элемент " + max);
+                        Console.WriteLine("Минимальный элемент " + min);
+
+                        //int[] test = { 1, 2, 3, 4, 4, 4, -1 };
                         MyFunction.PrintArray(arr);
-
-                        MyFunction.Strange1(ref test);
-
-                        MyFunction.PrintArray(test);
+                        MyFunction.Strange1(ref arr);
+                        MyFunction.PrintArray(arr);
+                        MyFunction.Strange2(ref arr);
+                        MyFunction.PrintArray(arr);
                         break;
                     }
+                    
                     
             }
 

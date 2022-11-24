@@ -97,6 +97,23 @@ namespace Lab6
             arr = newArr;
         }
 
+        public static void Erase(ref int[] arr, int ind)
+        {
+            for (int i = ind + 1; i < arr.Length; i++)
+                arr[i - 1] = arr[i];
+
+            Array.Resize(ref arr, arr.Length - 1);
+        }
+        /*
+        public static int[] Unique(int[] arr)
+        {
+            int[] sup = new int[arr.Length];
+            Array.Copy(arr, sup, arr.Length);
+            int countDel = 0;
+
+            return 0;
+        }
+        */
         public static void Strange1(ref int[] arr)
         {
             int min = arr.Min();
@@ -108,6 +125,21 @@ namespace Lab6
                 {
                     Insert(ref arr, i, min);
                     i++;
+                }
+            }
+        }
+
+        public static void Strange2(ref int[] arr)
+        {
+            for(int i = 0; i < arr.Length; i++)
+            {
+                int j = i + 1;
+                while(j < arr.Length)
+                {
+                    if (arr[j] == arr[i])
+                        Erase(ref arr, j);
+                    else
+                        j++;
                 }
             }
         }
