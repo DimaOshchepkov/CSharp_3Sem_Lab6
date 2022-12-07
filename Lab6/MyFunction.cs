@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
+using System.Runtime.Remoting.Messaging;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,9 +27,9 @@ namespace Lab6
 
         public static int[] ReadIntInLine(String message = "Неверный ввод чисел")
         {
-            while(true)
+            while (true)
             {
-                string[] str =  Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                string[] str = Console.ReadLine().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
                 int[] arr = new int[str.Length];
                 int i = 0;
                 while (i < arr.Length && int.TryParse(str[i], out arr[i])) i++;
@@ -44,7 +45,7 @@ namespace Lab6
         {
             Console.WriteLine("Введите размер");
             int size = ReadInt((int x) => x > 0, "Неверный ввод массива");
-            int[] array = new int[size]; 
+            int[] array = new int[size];
 
             Console.WriteLine("Введите числа");
             for (int i = 0; i < size; i++)
@@ -61,7 +62,7 @@ namespace Lab6
             int indMin = 0;
             for (int i = 1; i < array.Length; i++)
             {
-                if(min > array[i])
+                if (min > array[i])
                 {
                     min = array[i];
                     indMin = i;
@@ -91,7 +92,7 @@ namespace Lab6
         {
             int[] newArr = new int[arr.Length + 1];
             Array.Copy(arr, newArr, ind);
-            Array.Copy(arr, ind, newArr, ind+1, arr.Length - ind);
+            Array.Copy(arr, ind, newArr, ind + 1, arr.Length - ind);
             newArr[ind] = elem;
 
             arr = newArr;
@@ -131,10 +132,10 @@ namespace Lab6
 
         public static void Strange2(ref int[] arr)
         {
-            for(int i = 0; i < arr.Length; i++)
+            for (int i = 0; i < arr.Length; i++)
             {
                 int j = i + 1;
-                while(j < arr.Length)
+                while (j < arr.Length)
                 {
                     if (arr[j] == arr[i])
                         Erase(ref arr, j);
@@ -152,7 +153,7 @@ namespace Lab6
             y = sup;
         }
 
-        public static void PrintArray(int[] array, int first= -1, int second = -1)
+        public static void PrintArray(int[] array, int first = -1, int second = -1)
         {
             if (first == second && second == -1)
                 foreach (int i in array)
@@ -168,11 +169,95 @@ namespace Lab6
                     Console.Write(i + " ");
         }
 
+        public static void PrintArray(int[,] arr)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                for (int j = 0; j < arr.GetLength(1); j++)
+                {
+                    Console.Write(arr[i, j] + "  ");
+                }
+                Console.WriteLine();
+            }
+        }
+        public static int SumRowOfArr(int[,] arr, int ind)
+        {
+            int sum = 0;
+            for (int i = 0; i < arr.GetLength(1); i++)
+                sum += arr[ind, i];
+
+            return sum;
+        }
+
+        public static int SumColumnOfArr(int[,] arr, int ind)
+        {
+            int sum = 0;
+            for (int i = 0; i < arr.GetLength(0); i++)
+                sum += arr[i, ind];
+
+            return sum;
+        }
+
+        public static int MinInColumn(int[,] arr, int ind)
+        {
+            int min = arr[0, ind];
+
+            for (int i = 1; i < arr.GetLength(0); i++)
+                if (min > arr[i, ind])
+                    min = arr[i, ind];
+
+            return min;
+        }
+
+        public static void SwapColumn(int[,] arr, int ind1, int ind2)
+        {
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                int sup = arr[i, ind1];
+                arr[i, ind1] = arr[i, ind2];
+                arr[i, ind2] = sup;
+            }
+        }
+
+        public static void CopyColumn(int[,] arr1, int[,] arr2, int ind1, int ind2)
+        {
+            for (int i = 0; i < arr1.GetLength(0); i++)
+            {
+                arr2[i, ind2] = arr1[i, ind1];
+            }
+        }
+
+
+
+        public static bool IsMagicSquare(int[,] arr)
+        {
+            int sum = SumRowOfArr(arr, 0);
+            for (int i = 0; i < arr.GetLength(0); i++)
+                if (sum != SumRowOfArr(arr, i) || sum != SumColumnOfArr(arr, i))
+                    return false;
+
+            int diag1 = 0;
+            int diag2 = 0;
+            for (int i = 0; i < arr.GetLength(0); i++)
+            {
+                diag1 += arr[i, i];
+                diag2 += arr[arr.GetLength(0) - 1 - i, i];
+            }
+
+            if (diag2 != sum || diag1 != sum)
+                return false;
+
+
+            return true;
+        }
+
         public static void PrintMenu()
         {
             Console.WriteLine("1) Поменять местами\n" +
                                 "2) Пересечение\n" +
-                                "3) Странный действия\n");
+                                "3) Странный действия\n" +
+                                "4) Змейка\n" +
+                                "5) Магический квадрат\n");
         }
 
 
@@ -183,6 +268,16 @@ namespace Lab6
         swap = 1,
         intersection,
         strenge,
+        snake,
+        magicSquare,
+    }
+
+    public class MyComp : IComparer<(int, int)>
+    {
+        public int Compare((int, int) x, (int, int) y)
+        {
+            return x.Item2.CompareTo(y.Item2);
+        }
     }
 }
 
