@@ -220,7 +220,7 @@ namespace Lab6
                         }
                         break;
                     }
-                case 6:
+                case (int)task.sumDigit:
                     {
                         String str = "- 23l-j4l--32 k43hl 43l";
                         String pattern = @"-?\d+";
@@ -232,7 +232,7 @@ namespace Lab6
                         foreach (Match m in matches)
                             sum += int.Parse(m.Value);
 
-                        Console.WriteLine(sum);
+                        Console.WriteLine("Сумма цифр равна " + sum);
 
                         break;
                     }

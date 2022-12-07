@@ -257,7 +257,8 @@ namespace Lab6
                                 "2) Пересечение\n" +
                                 "3) Странный действия\n" +
                                 "4) Змейка\n" +
-                                "5) Магический квадрат\n");
+                                "5) Магический квадрат\n" +
+                                "6) Сумма цифр\n");
         }
 
 
@@ -270,6 +271,7 @@ namespace Lab6
         strenge,
         snake,
         magicSquare,
+        sumDigit,
     }
 
     public class MyComp : IComparer<(int, int)>
