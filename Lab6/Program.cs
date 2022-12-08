@@ -300,15 +300,20 @@ namespace Lab6
                         ///9((ш)зд())9((()))9
                         String str = Console.ReadLine();
 
-                        String pattern = @"\((\(?\)?\w+\(?\)?)\)";
+                        String pattern = @"\((\w+)\)";
                         String target = "";
 
                         Regex reg = new Regex(pattern);
                         str = Regex.Replace(str, pattern, String.Empty);
 
-                        //str = Regex.Replace(str, @"\(?\)?", String.Empty);
+                        str = Regex.Replace(str, @"\(?\)?", String.Empty);
                         Console.WriteLine(str);
 
+                        break;
+                    }
+                case (int)task.delSimbol:
+                    {
+                        
                         break;
                     }
                     

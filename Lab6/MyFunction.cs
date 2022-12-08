@@ -287,7 +287,8 @@ namespace Lab6
                                 "6) Найти символы\n" +
                                 "7) Сумма цифр\n" +
                                 "8) Разделение\n" +
-                                "9) Удалить промежуток\n");
+                                "9) Удалить промежуток\n" +
+                                "10) Удалить символ\n");
         }
 
 
@@ -304,6 +305,7 @@ namespace Lab6
         sumDigit,
         split,
         delGap,
+        delSimbol
     }
 
     public class MyComp : IComparer<(int, int)>
