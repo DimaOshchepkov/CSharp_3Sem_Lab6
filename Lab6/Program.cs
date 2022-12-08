@@ -92,7 +92,7 @@ namespace Lab6
                         Random r = new Random();
                         int[] arr = new int[size];
                         for (int i = 0; i < arr.Length; i++)
-                            arr[i] = r.Next(-15, 30 + 1);
+                            arr[i] = 1;// r.Next(-15, 30 + 1);
 
                         int max = arr.Max();
                         int min = arr.Min();
@@ -161,7 +161,7 @@ namespace Lab6
                                     downDirection=true;
                                 }
                             }
-                            Console.WriteLine();
+                            //Console.WriteLine();
                             step++;
                         }
 
@@ -201,7 +201,7 @@ namespace Lab6
                         MyFunction.PrintArray(arr);
                         break;
                     }
-                case (int)task.magicSquare: 
+                case (int)task.magicSquare: //print
                     {
                         /*
                         int[,] arr = { { 2, 5, 6 },
