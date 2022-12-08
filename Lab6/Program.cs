@@ -24,6 +24,9 @@ namespace Lab6
                         int indMin = MyFunction.IndexMin(array);
                         int indMax = MyFunction.IndexMax(array);
 
+                        Console.WriteLine("Минимальный " + indMin);
+                        Console.WriteLine("Максимальный " + indMax);
+
                         int middle = (int)Math.Ceiling((indMax + indMin) / 2.0);
                         for (int i = Math.Min(indMin, indMax); i < middle; i++)
                             MyFunction.Swap(ref array[i], ref array[Math.Max(indMax, indMin) - i + Math.Min(indMin, indMax)]);
@@ -35,8 +38,8 @@ namespace Lab6
 
                 case (int)task.intersection:
                     {
-                        int[] arr1 = { 1, 2, 3, 4, 5, 6 };
-                        int[] arr2 = { 2, 4, 5, 6, 8 };
+                        int[] arr1 = { 1, 2, 2, 3, 4, 5, 6 };
+                        int[] arr2 = { 2, 2, 2, 4, 5, 6, 8 };
                         int ind1 = 0;
                         int ind2 = 0;
 
@@ -105,7 +108,7 @@ namespace Lab6
                         MyFunction.PrintArray(arr);
                         break;
                     }
-                case (int)task.snake:
+                case (int)task.snake:// вывод
                     {
                         Console.WriteLine("Введите количество рядов");
                         int row = MyFunction.ReadInt((int x) => x > 0, "Неверный ввод количества рядов");
@@ -198,11 +201,19 @@ namespace Lab6
                         MyFunction.PrintArray(arr);
                         break;
                     }
-                case (int)task.magicSquare:
+                case (int)task.magicSquare: 
                     {
+                        /*
                         int[,] arr = { { 2, 5, 6 },
                                         {9, 2, 3 },
-                                        {5, 1, 5 }};
+                                        {5, 1, 5 }};*/
+                        Console.WriteLine("Введите размер массива");
+                        int size = MyFunction.ReadInt((int x) => x > 0, "Неверный ввод размера");
+
+                        int[,] arr = new int[size, size];
+                        MyFunction.FillArray(arr, -50, 150);
+
+                        MyFunction.PrintArray(arr);
 
                         if (!MyFunction.IsMagicSquare(arr))
                         {
@@ -222,7 +233,8 @@ namespace Lab6
                     }
                 case (int)task.sumDigit:
                     {
-                        String str = "- 23l-j4l--32 k43hl 43l";
+                        //String str = "- 23l-j4l--32 k43hl 43l";
+                        String str = Console.ReadLine();
                         String pattern = @"-?\d+";
                         Regex regex = new Regex(pattern);
 
@@ -236,7 +248,69 @@ namespace Lab6
 
                         break;
                     }
-                    
+
+                case (int)task.findChars:
+                    {
+                        Console.WriteLine("Введите 1-ый сиимвол");
+                        char s1 = Console.ReadKey().KeyChar;
+                        Console.WriteLine();
+
+                        Console.WriteLine("Введите 2-ый сиимвол");
+                        char s2 = Console.ReadKey().KeyChar;
+                        Console.WriteLine();
+
+                        Console.WriteLine("Введите строку");
+                        String str = Console.ReadLine();
+
+                        if (MyFunction.CountSimbol(str, s1) == MyFunction.CountSimbol(str, s2))
+                        {
+                            Dictionary<char, int> dict = new Dictionary<char, int>();
+                            foreach (var x in str)
+                            {
+                                if (!dict.ContainsKey(x))
+                                    dict.Add(x, 1);
+                                else
+                                    dict[x]++;
+                            }
+                            MyFunction.PrintDict(dict);
+                        }
+                        break;
+                    }
+                case (int)task.split://виндовс форм
+                    {
+                        Console.WriteLine("Введите строку");
+                        StringBuilder strBuild = new StringBuilder(Console.ReadLine());
+                        
+                        for(int i = 1; i < strBuild.Length; i++)
+                        {
+                            if (strBuild[i] != strBuild[i - 1])
+                            {
+                                strBuild.Insert(i, '*');
+                                i++;
+                            }
+                        }
+                        Console.WriteLine(strBuild.ToString());
+                        
+
+                        break;
+                    }
+                case (int)task.delGap:
+                    {
+                        Console.WriteLine("Введите строку");
+                        ///9((ш)зд())9((()))9
+                        String str = Console.ReadLine();
+
+                        String pattern = @"\((\(?\)?\w+\(?\)?)\)";
+                        String target = "";
+
+                        Regex reg = new Regex(pattern);
+                        str = Regex.Replace(str, pattern, String.Empty);
+
+                        //str = Regex.Replace(str, @"\(?\)?", String.Empty);
+                        Console.WriteLine(str);
+
+                        break;
+                    }
                     
             }
 

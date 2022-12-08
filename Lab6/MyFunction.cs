@@ -155,7 +155,7 @@ namespace Lab6
 
         public static void PrintArray(int[] array, int first = -1, int second = -1)
         {
-            if (first == second && second == -1)
+            if (first == -1 && second == -1)
                 foreach (int i in array)
                     Console.Write(i + " ");
             else if (first != -1 && second == -1)
@@ -167,6 +167,8 @@ namespace Lab6
             else if (first != -1 && second != -1)
                 for (int i = first; i < second; i++)
                     Console.Write(i + " ");
+
+            Console.WriteLine();
         }
 
         public static void PrintArray(int[,] arr)
@@ -175,7 +177,7 @@ namespace Lab6
             {
                 for (int j = 0; j < arr.GetLength(1); j++)
                 {
-                    Console.Write(arr[i, j] + "  ");
+                    Console.Write($"{arr[i, j], 5} ");
                 }
                 Console.WriteLine();
             }
@@ -187,6 +189,14 @@ namespace Lab6
                 sum += arr[ind, i];
 
             return sum;
+        }
+
+        public static void FillArray(int[,] arr, int begin, int end)
+        {
+            Random r = new Random();
+            for (int i = 0; i < arr.GetLength(0); i++)
+                for (int j = 0; j < arr.GetLength(1); j++)
+                    arr[i, j] = r.Next(begin, end + 1);
         }
 
         public static int SumColumnOfArr(int[,] arr, int ind)
@@ -251,6 +261,22 @@ namespace Lab6
             return true;
         }
 
+        public static int CountSimbol(String str, char s)
+        {
+            int count = 0;
+            foreach (var x in str)
+                if (x == s)
+                    count++;
+
+            return count;           
+        }
+
+        public static void PrintDict<TKey, TValue>(Dictionary<TKey, TValue> dict)
+        {
+            foreach (var x in dict)
+                Console.WriteLine(x.Key + " " + x.Value);
+        }
+
         public static void PrintMenu()
         {
             Console.WriteLine("1) Поменять местами\n" +
@@ -258,7 +284,10 @@ namespace Lab6
                                 "3) Странный действия\n" +
                                 "4) Змейка\n" +
                                 "5) Магический квадрат\n" +
-                                "6) Сумма цифр\n");
+                                "6) Найти символы\n" +
+                                "7) Сумма цифр\n" +
+                                "8) Разделение\n" +
+                                "9) Удалить промежуток\n");
         }
 
 
@@ -271,7 +300,10 @@ namespace Lab6
         strenge,
         snake,
         magicSquare,
+        findChars,
         sumDigit,
+        split,
+        delGap,
     }
 
     public class MyComp : IComparer<(int, int)>
